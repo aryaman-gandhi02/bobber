@@ -1,4 +1,4 @@
-package com.bobber.enums;
+package com.bobber.domain.enums;
 
 public enum HttpVerb {
     GET,

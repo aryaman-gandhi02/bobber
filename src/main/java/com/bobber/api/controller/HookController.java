@@ -1,22 +1,21 @@
-package com.bobber.controller;
+package com.bobber.api.controller;
 
-import com.bobber.entity.Hook;
-import com.bobber.repository.HookRepository;
+import com.bobber.api.dto.HookCreateResponseDTO;
+import com.bobber.service.HookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/hook")
+@RequestMapping("/api/hooks")
 @RequiredArgsConstructor
 public class HookController {
 
-    private final HookRepository hookRepository;
+    private final HookService hookService;
 
     @PostMapping
-    public Hook createHook() {
-        Hook hook = new Hook();
-        return hookRepository.save(hook);
+    public HookCreateResponseDTO createHook() {
+        return hookService.generateHook();
     }
 }

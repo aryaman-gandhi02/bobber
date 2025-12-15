@@ -1,6 +1,6 @@
 package com.bobber.repository;
 
-import com.bobber.entity.Hook;
+import com.bobber.domain.Hook;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
