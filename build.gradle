@@ -29,6 +29,7 @@ ext {
 }
 
 dependencies {
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-integration'
     implementation 'org.springframework.boot:spring-boot-starter-kafka'
@@ -47,6 +48,7 @@ dependencies {
     implementation 'org.springframework.integration:spring-integration-websocket'
     implementation 'org.springframework.integration:spring-integration-ws'
     implementation 'org.springframework.security:spring-security-messaging'
+    implementation "org.springframework.boot:spring-boot-starter-oauth2-resource-server"
     implementation 'org.liquibase:liquibase-core:4.33.0'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
