@@ -1,0 +1,48 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: bobber
+
+  datasource:
+    url: jdbc:postgresql://localhost:5430/bobber
+    username: bobber
+    password: bobber
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  jackson:
+    time-zone: UTC
+
+  docker:
+    compose:
+      enabled: false
+
+logging:
+  level:
+    liquibase: INFO
+    root: INFO
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql: TRACE
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when_authorized
