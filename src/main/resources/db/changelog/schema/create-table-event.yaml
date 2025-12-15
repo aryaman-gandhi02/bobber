@@ -32,6 +32,10 @@ databaseChangeLog:
                   nullable: false
 
             - column:
+                name: content_type
+                type: varchar(255)
+
+            - column:
                 name: query_params
                 type: jsonb
 
@@ -41,7 +45,7 @@ databaseChangeLog:
 
             - column:
                 name: body
-                type: text
+                type: bytea
 
             - column:
                 name: received_at
@@ -62,3 +66,13 @@ databaseChangeLog:
           columns:
             - column:
                 name: hook_id
+
+      - createIndex:
+          tableName: event
+          indexName: idx_event_hook_id_received_at
+          columns:
+            - column:
+                name: hook_id
+            - column:
+                name: received_at
+                descending: true
