@@ -1,6 +1,5 @@
 package com.bobber.domain;
 
-import com.bobber.domain.enums.HttpVerb;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,47 +7,49 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
+import org.springframework.http.HttpMethod;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 @Entity
-@Table(name = "event")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "event")
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
     private UUID id;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "hook_id")
     private Hook hook;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private HttpVerb method;
+    @Column(name = "method", nullable = false)
+    private HttpMethod method;
 
-    @Column(nullable = false)
+    @Column(name = "path", nullable = false)
     private String path;
 
-    @Column
+    @Column(name = "content_type")
     private String contentType;
 
-    @Column(columnDefinition = "jsonb")
     @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "query_params", columnDefinition = "jsonb")
     private Map<String, String[]> queryParams;
 
-    @Column(columnDefinition = "jsonb")
     @JdbcTypeCode(SqlTypes.JSON)
-    private Map<String, Object> headers;
+    @Column(name = "headers", columnDefinition = "jsonb")
+    private Map<String, List<String>> headers;
 
-    @Column(columnDefinition = "bytea")
+    @Column(name = "body", columnDefinition = "bytea")
     private byte[] body;
 
     @CreationTimestamp
-    @Column(nullable = false, updatable = false)
+    @Column(name = "received_at", nullable = false, updatable = false)
     private Instant receivedAt;
 }

@@ -14,26 +14,27 @@ import java.util.UUID;
 import static com.bobber.constants.Constants.BOBBER_SK_PREFIX;
 
 @Entity
-@Table(name = "hook")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "hook")
 public class Hook {
 
     private static final StringKeyGenerator SECRET_GENERATOR = KeyGenerators.string();
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
     private UUID id;
 
-    @Column(nullable = false, updatable = false, unique = true)
+    @Column(name = "secret", nullable = false, updatable = false, unique = true)
     private String secret;
 
     @CreationTimestamp
-    @Column(nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
-    @Column
+    @Column(name = "expires_at")
     private Instant expiresAt;
 
     @PrePersist

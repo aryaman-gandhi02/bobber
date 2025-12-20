@@ -1,4 +1,4 @@
-package com.bobber.security.config;
+package com.bobber.security.auth.hook;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

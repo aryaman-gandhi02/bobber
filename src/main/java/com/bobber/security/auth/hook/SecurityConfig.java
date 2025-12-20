@@ -1,4 +1,4 @@
-package com.bobber.security.config;
+package com.bobber.security.auth.hook;
 
 import com.bobber.security.BearerHookAuthFilter;
 import org.springframework.context.annotation.Bean;
