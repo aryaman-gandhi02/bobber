@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.33.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="003-create-idx-hook-id-received-at-desc" author="SYSTEM">
+        <createIndex indexName="idx_hook_id_received_at_desc" tableName="event">
+            <column name="hook_id"/>
+            <column descending="true" name="received_at"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

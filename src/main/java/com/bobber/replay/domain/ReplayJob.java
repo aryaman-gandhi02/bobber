@@ -22,7 +22,7 @@ import java.util.UUID;
         indexes = {
                 @Index(name = "idx_event_id", columnList = "event_id"),
                 @Index(name = "idx_status", columnList = "status"),
-                @Index(name = "idx_status_created_at", columnList = "status, created_at ASC")
+                @Index(name = "idx_status_created_at", columnList = "status, created_at")
         }
 )
 public class ReplayJob {
@@ -60,7 +60,7 @@ public class ReplayJob {
     private ReplayJobStatus status = ReplayJobStatus.QUEUED;
 
     @CreationTimestamp
-    @Column(name = "createdAt", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
 }

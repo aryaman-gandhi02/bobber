@@ -13,7 +13,13 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "delivery_attempt")
+@Table(
+        name = "delivery_attempt",
+        indexes = {
+                @Index(name = "idx_replay_job_id", columnList = "replay_job_id"),
+                @Index(name = "idx_replay_job_id_attempted_at_desc", columnList = "replay_job_id, attempted_at DESC")
+        }
+)
 public class DeliveryAttempt {
 
     @Id
