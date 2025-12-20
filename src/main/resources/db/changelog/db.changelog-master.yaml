@@ -1,8 +1,0 @@
-  databaseChangeLog:
-    - include:
-        file: schema/create-table-hook.yaml
-        relativeToChangelogFile: true
-
-    - include:
-        file: schema/create-table-event.yaml
-        relativeToChangelogFile: true

@@ -1,6 +1,6 @@
 package com.bobber.replay.http;
 
-import com.bobber.domain.ReplayJob;
+import com.bobber.replay.domain.ReplayJob;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;

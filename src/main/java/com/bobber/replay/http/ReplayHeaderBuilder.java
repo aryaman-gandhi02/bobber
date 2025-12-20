@@ -1,7 +1,7 @@
 package com.bobber.replay.http;
 
-import com.bobber.domain.Event;
-import com.bobber.domain.ReplayJob;
+import com.bobber.event.domain.Event;
+import com.bobber.replay.domain.ReplayJob;
 import com.bobber.security.policy.UnsafeHeadersPolicy;
 import org.springframework.http.HttpHeaders;
 

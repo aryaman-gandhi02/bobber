@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.33.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="003-create-delivery-attempt-table" author="SYSTEM">
+        <createTable tableName="delivery_attempt">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_delivery_attempt"/>
+            </column>
+            <column name="replay_job_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="attempt_number" type="INT"/>
+            <column name="success" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="http_status" type="INT"/>
+            <column name="duration_ms" type="BIGINT"/>
+            <column name="error" type="VARCHAR(255)"/>
+            <column name="response_body" type="bytea"/>
+            <column name="attempted_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
