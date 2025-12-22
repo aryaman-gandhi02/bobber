@@ -46,7 +46,7 @@ public class Event {
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "query_params", columnDefinition = "jsonb")
-    private Map<String, String[]> queryParams;
+    private Map<String, List<String>> queryParams;
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "headers", columnDefinition = "jsonb")
