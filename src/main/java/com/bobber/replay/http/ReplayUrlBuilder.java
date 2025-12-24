@@ -1,9 +1,11 @@
 package com.bobber.replay.http;
 
+import com.bobber.event.domain.Event;
 import com.bobber.replay.domain.ReplayJob;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Map;
 
 public final class ReplayUrlBuilder {
@@ -11,27 +13,37 @@ public final class ReplayUrlBuilder {
     private ReplayUrlBuilder() {}
 
     public static URI build(ReplayJob job) {
-        UriComponentsBuilder builder =
-                UriComponentsBuilder.fromUriString(job.getTargetUrl());
+        Event event = job.getEvent();
 
-        // 1. Apply original query params
-        applyQueryParams(builder, job.getEvent().getQueryParams());
+        UriComponentsBuilder builder = UriComponentsBuilder
+                .fromUriString(job.getTargetUrl())
+                .replacePath(event.getPath())
+                .replaceQuery(null);
 
-        // 2. Apply overrides (replace semantics)
-        applyQueryParams(builder, job.getQueryParamOverrides());
+        applyQueryParams(builder, event.getQueryParams(), false);
 
-        return builder.build(true).toUri();
+        applyQueryParams(builder, job.getQueryParamOverrides(), true);
+
+        return builder.build().toUri();
     }
 
+    /**
+     * Applies query params to the builder.
+     *
+     * @param replace if true, existing values for the key are removed first
+     */
     private static void applyQueryParams(
             UriComponentsBuilder builder,
-            Map<String, ?> params
+            Map<String, List<String>> params,
+            boolean replace
     ) {
-        if (params == null) return;
+        if (params == null || params.isEmpty()) return;
 
-        params.forEach((key, value) -> {
-            builder.replaceQueryParam(key); // remove existing
-            builder.queryParam(key, value);
+        params.forEach((key, values) -> {
+            if (replace) {
+                builder.replaceQueryParam(key);
+            }
+            values.forEach(v -> builder.queryParam(key, v));
         });
     }
 }

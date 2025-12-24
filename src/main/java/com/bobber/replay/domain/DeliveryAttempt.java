@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -34,8 +35,9 @@ public class DeliveryAttempt {
     @Column(name = "attempt_number")
     private Integer attemptNumber;
 
-    @Column(name = "success", nullable = false)
-    private boolean success;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private DeliveryAttemptStatus status;
 
     @Column(name = "http_status")
     private Integer httpStatus;
@@ -52,4 +54,29 @@ public class DeliveryAttempt {
     @CreationTimestamp
     @Column(name = "attempted_at", nullable = false, updatable = false)
     private Instant attemptedAt;
+
+    public static DeliveryAttempt start(ReplayJob job, int attemptNo) {
+        DeliveryAttempt attempt = new DeliveryAttempt();
+        attempt.replayJob = job;
+        attempt.attemptNumber = attemptNo;
+        attempt.attemptedAt = Instant.now();
+        return attempt;
+    }
+
+    public void markResult(int status, byte[] body, Duration duration) {
+        this.httpStatus = status;
+        this.responseBody = body;
+        this.status = DeliveryAttemptStatus.SUCCESS;
+        this.durationMs = duration.toMillis();
+    }
+
+    public void markFailure(Exception ex, Duration duration) {
+        this.status = DeliveryAttemptStatus.FAILED;
+        this.error = ex.getMessage();
+        this.durationMs = duration.toMillis();
+    }
+
+    public boolean isSuccess() {
+        return this.status == DeliveryAttemptStatus.SUCCESS;
+    }
 }

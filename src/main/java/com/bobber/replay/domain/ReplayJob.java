@@ -10,6 +10,7 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -43,11 +44,11 @@ public class ReplayJob {
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "header_overrides", columnDefinition = "jsonb")
-    private Map<String, String> headerOverrides;
+    private Map<String, List<String>> headerOverrides;
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "query_param_overrides", columnDefinition = "jsonb")
-    private Map<String, String> queryParamOverrides;
+    private Map<String, List<String>> queryParamOverrides;
 
     @Column(name = "body_override", columnDefinition = "bytea")
     private byte[] bodyOverride;
@@ -62,5 +63,21 @@ public class ReplayJob {
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
+
+    public boolean isQueued() {
+        return status == ReplayJobStatus.QUEUED;
+    }
+
+    public void markRunning() {
+        this.status = ReplayJobStatus.RUNNING;
+    }
+
+    public void markSuccess() {
+        this.status = ReplayJobStatus.SUCCESS;
+    }
+
+    public void markFailed() {
+        this.status = ReplayJobStatus.FAILED;
+    }
 
 }

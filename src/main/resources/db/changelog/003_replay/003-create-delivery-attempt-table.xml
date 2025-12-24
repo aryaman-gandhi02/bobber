@@ -14,7 +14,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="attempt_number" type="INT"/>
-            <column name="success" type="BOOLEAN">
+            <column name="status" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="http_status" type="INT"/>

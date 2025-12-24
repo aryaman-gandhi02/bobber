@@ -1,24 +1,28 @@
 package com.bobber.security.policy;
 
-import org.springframework.http.HttpHeaders;
-
+import java.util.Locale;
 import java.util.Set;
 
 public final class UnsafeHeadersPolicy {
 
-    private UnsafeHeadersPolicy() {}
-
-    // Always unsafe, never forwardable
     private static final Set<String> ALWAYS_BLOCKED = Set.of(
-            HttpHeaders.HOST,
-            HttpHeaders.CONTENT_LENGTH
+            "host",
+            "content-length",
+            "transfer-encoding",
+            "connection"
     );
 
-    public static boolean isAlwaysBlocked(String headerName) {
-        return ALWAYS_BLOCKED.contains(headerName.toLowerCase());
+    private static final String AUTHORIZATION = "authorization";
+
+    public static boolean isAlwaysBlocked(String header) {
+        return ALWAYS_BLOCKED.contains(normalize(header));
     }
 
-    public static boolean isAuthorization(String headerName) {
-        return HttpHeaders.AUTHORIZATION.equalsIgnoreCase(headerName);
+    public static boolean isAuthorization(String header) {
+        return AUTHORIZATION.equals(normalize(header));
+    }
+
+    public static String normalize(String header) {
+        return header.toLowerCase(Locale.ROOT);
     }
 }

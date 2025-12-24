@@ -1,15 +1,14 @@
 package com.bobber.replay.policy;
 
+import com.bobber.replay.domain.DeliveryAttempt;
+
 import java.time.Duration;
 
-public final class RetryPolicy {
+public interface RetryPolicy {
 
-    public static final int MAX_ATTEMPTS = 3;
+    int maxAttempts();
 
-    private RetryPolicy() {}
+    boolean shouldRetry(DeliveryAttempt attempt);
 
-    public static Duration backoff(int attemptNumber) {
-        return Duration.ofSeconds(2L * attemptNumber);
-    }
+    Duration backoff(int attemptNumber);
 }
-

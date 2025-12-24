@@ -1,4 +1,4 @@
-package com.bobber.replay.application.config;
+package com.bobber.replay.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

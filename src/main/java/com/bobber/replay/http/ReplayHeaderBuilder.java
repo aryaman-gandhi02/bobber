@@ -15,14 +15,20 @@ public final class ReplayHeaderBuilder {
     public static void build(ReplayJob job, HttpHeaders target) {
         Event event = job.getEvent();
 
-        copyHeaders(
+        copySafeHeaders(
                 event.getHeaders(),
                 job.isForwardAuthorization(),
-                target
+                target,
+                false
         );
 
         if (job.getHeaderOverrides() != null) {
-            job.getHeaderOverrides().forEach(target::set);
+            copySafeHeaders(
+                    job.getHeaderOverrides(),
+                    job.isForwardAuthorization(),
+                    target,
+                    true
+            );
         }
 
         if (job.getContentTypeOverride() != null) {
@@ -30,18 +36,37 @@ public final class ReplayHeaderBuilder {
         }
     }
 
-    private static void copyHeaders(
+    /**
+     * Copies headers from source → target while enforcing safety rules.
+     *
+     * @param override if true, existing header values are replaced
+     */
+    private static void copySafeHeaders(
             Map<String, List<String>> source,
             boolean forwardAuthorization,
-            HttpHeaders target
+            HttpHeaders target,
+            boolean override
     ) {
-        if (source == null) return;
+        if (source == null || source.isEmpty()) {
+            return;
+        }
 
-        source.forEach((key, values) -> {
-            if (UnsafeHeadersPolicy.isAlwaysBlocked(key)) return;
-            if (UnsafeHeadersPolicy.isAuthorization(key) && !forwardAuthorization) return;
+        source.forEach((rawName, values) -> {
+            String normalized = UnsafeHeadersPolicy.normalize(rawName);
 
-            values.forEach(v -> target.add(key, v));
+            if (UnsafeHeadersPolicy.isAlwaysBlocked(normalized)) {
+                return;
+            }
+
+            if (UnsafeHeadersPolicy.isAuthorization(normalized) && !forwardAuthorization) {
+                return;
+            }
+
+            if (override) {
+                target.remove(rawName);
+            }
+
+            values.forEach(v -> target.add(rawName, v));
         });
     }
 }

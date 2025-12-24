@@ -1,8 +1,6 @@
 package com.bobber.replay.domain;
 
-public enum ReplayJobStatus {
-    QUEUED,
-    RUNNING,
+public enum DeliveryAttemptStatus {
     SUCCESS,
     FAILED
 }
