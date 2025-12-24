@@ -7,14 +7,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.bobber.hook.api.HookEndpoints.API_BASE;
+
 @RestController
-@RequestMapping("/api/hooks")
+@RequestMapping(API_BASE)
 @RequiredArgsConstructor
 public class HookController {
 
     private final HookService hookService;
 
-    @PostMapping
+    @PostMapping("/hooks")
     public HookCreateResponseDTO createHook() {
         return hookService.generateHook();
     }
