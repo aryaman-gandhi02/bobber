@@ -3,6 +3,7 @@ package com.bobber.event.service;
 import com.bobber.event.domain.Event;
 import com.bobber.event.dto.EventDetailDTO;
 import com.bobber.event.dto.EventSummaryDTO;
+import com.bobber.event.mapper.EventDetailMapper;
 import com.bobber.event.repository.EventRepository;
 import com.bobber.hook.domain.Hook;
 import com.bobber.hook.service.HookService;
@@ -16,7 +17,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import tools.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.time.Instant;
@@ -30,7 +30,6 @@ public class EventService {
 
     private final HookService hookService;
     private final EventRepository eventRepository;
-    private final ObjectMapper objectMapper;
 
     @Transactional
     public void ingestEvent(UUID hookId, HttpServletRequest request) throws IOException {
@@ -69,21 +68,7 @@ public class EventService {
 
     public EventDetailDTO getEvent(UUID eventId, String hookSecret) {
         Event event = requireEvent(eventId, hookSecret);
-
-        String bodyBase64 = event.getBody() == null
-                ? null
-                : Base64.getEncoder().encodeToString(event.getBody());
-
-        return new EventDetailDTO(
-                event.getId(),
-                event.getMethod().name(),
-                event.getPath(),
-                event.getContentType(),
-                objectMapper.writeValueAsString(event.getHeaders()),
-                objectMapper.writeValueAsString(event.getQueryParams()),
-                bodyBase64,
-                event.getReceivedAt()
-        );
+        return EventDetailMapper.from(event);
     }
 
     public Event requireEvent(UUID eventId, String hookSecret) {

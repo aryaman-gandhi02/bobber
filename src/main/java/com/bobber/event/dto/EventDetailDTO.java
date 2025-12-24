@@ -1,15 +1,19 @@
 package com.bobber.event.dto;
 
 import java.time.Instant;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public record EventDetailDTO(
         UUID id,
         String method,
         String path,
+        Map<String, List<String>> queryParams,
+        Map<String, List<String>> headers,
         String contentType,
-        String headers,        // JSON string
-        String queryParams,    // JSON string
-        String bodyBase64,     // binary-safe
+        long bodySize,
+        String bodyPreview,
+        boolean binaryBody,
         Instant receivedAt
 ) {}
