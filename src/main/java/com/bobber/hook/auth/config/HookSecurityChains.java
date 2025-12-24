@@ -7,8 +7,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static com.bobber.hook.api.HookEndpoints.API_WILDCARD;
-import static com.bobber.hook.api.HookEndpoints.INGEST_WILDCARD;
+import static com.bobber.hook.api.HookEndpoints.*;
 
 public final class HookSecurityChains {
 
@@ -19,6 +18,17 @@ public final class HookSecurityChains {
 
         http
                 .securityMatcher(INGEST_WILDCARD)
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
+
+        return http.build();
+    }
+
+    public static SecurityFilterChain hookCreateChain(HttpSecurity http)
+            throws Exception {
+
+        http
+                .securityMatcher(HOOK_CREATE_API)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
 

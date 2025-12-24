@@ -25,7 +25,8 @@ public class HookService {
         return new HookCreateResponseDTO(
                 hook.getId(),
                 hook.getSecret(),
-                hook.getCreatedAt()
+                hook.getCreatedAt(),
+                hook.getExpiresAt()
         );
     }
 

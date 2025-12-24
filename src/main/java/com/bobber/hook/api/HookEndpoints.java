@@ -11,4 +11,6 @@ public final class HookEndpoints {
     // Wildcards (for security)
     public static final String INGEST_WILDCARD = INGEST_BASE + "/**";
     public static final String API_WILDCARD = API_BASE + "/**";
+
+    public static final String HOOK_CREATE_API = API_BASE + "/hooks";
 }

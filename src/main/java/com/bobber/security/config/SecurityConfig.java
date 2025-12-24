@@ -21,6 +21,12 @@ public class SecurityConfig {
 
     @Bean
     @Order(2)
+    SecurityFilterChain hookCreateChain(HttpSecurity http) throws Exception {
+        return HookSecurityChains.hookCreateChain(http);
+    }
+
+    @Bean
+    @Order(3)
     SecurityFilterChain hookApiChain(
             HttpSecurity http,
             AuthenticationManager authManager
