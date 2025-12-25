@@ -4,14 +4,7 @@ import com.bobber.event.domain.Event;
 import com.bobber.event.dto.EventDetailDTO;
 import com.bobber.http.preview.BodyPreview;
 import com.bobber.http.util.HeaderUtil;
-import com.bobber.security.policy.UnsafeHeadersPolicy;
-import lombok.extern.slf4j.Slf4j;
 
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-@Slf4j
 public final class EventDetailMapper {
 
     private EventDetailMapper() {

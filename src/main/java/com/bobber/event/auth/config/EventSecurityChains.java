@@ -8,7 +8,8 @@ import static com.bobber.event.api.EventEndpoints.INGEST_WILDCARD;
 
 public final class EventSecurityChains {
 
-    private EventSecurityChains() {}
+    private EventSecurityChains() {
+    }
 
     public static SecurityFilterChain ingestChain(HttpSecurity http)
             throws Exception {

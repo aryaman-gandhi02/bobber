@@ -16,4 +16,5 @@ public record EventDetailDTO(
         String bodyPreview,
         boolean binaryBody,
         Instant receivedAt
-) {}
+) {
+}

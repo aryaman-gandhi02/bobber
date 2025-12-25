@@ -9,5 +9,5 @@ public record EventSummaryDTO(
         String path,
         String contentType,
         Instant receivedAt
-) {}
-
+) {
+}

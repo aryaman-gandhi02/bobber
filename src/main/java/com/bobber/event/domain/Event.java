@@ -21,7 +21,7 @@ import java.util.UUID;
 @Table(
         name = "event",
         indexes = {
-            @Index(name = "idx_hook_id_received_at_desc", columnList = "hook_id, received_at DESC")
+                @Index(name = "idx_hook_id_received_at_desc", columnList = "hook_id, received_at DESC")
         }
 )
 public class Event {
