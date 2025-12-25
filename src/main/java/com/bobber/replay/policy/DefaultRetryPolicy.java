@@ -10,7 +10,7 @@ import java.util.Set;
 @Slf4j
 public class DefaultRetryPolicy implements RetryPolicy {
 
-    private static final int MAX_ATTEMPTS = 5;
+    private static final int MAX_ATTEMPTS = 3;
 
     private static final Set<Integer> NON_RETRYABLE_HTTP_STATUSES = Set.of(
             400, // Bad Request
