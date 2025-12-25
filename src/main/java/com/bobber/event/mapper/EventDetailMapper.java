@@ -28,7 +28,7 @@ public final class EventDetailMapper {
 
         return new EventDetailDTO(
                 event.getId(),
-                event.getMethod().name(),
+                event.getMethod(),
                 event.getPath(),
                 event.getQueryParams(),
                 sanitizeHeaders(event.getHeaders()),

@@ -13,7 +13,7 @@
             <column name="hook_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
-            <column name="method" type="bytea">
+            <column name="method" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="path" type="VARCHAR(255)">

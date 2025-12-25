@@ -37,7 +37,7 @@ public class EventService {
 
         Event event = new Event();
         event.setHook(hook);
-        event.setMethod(HttpMethod.valueOf(request.getMethod()));
+        event.setMethod(request.getMethod());
         event.setPath(request.getRequestURI());
         event.setReceivedAt(Instant.now());
         event.setHeaders(extractHeaders(request));
@@ -59,7 +59,7 @@ public class EventService {
                 .findByHookIdOrderByReceivedAtDesc(hook.getId(), pageable)
                 .map(e -> new EventSummaryDTO(
                         e.getId(),
-                        e.getMethod().name(),
+                        e.getMethod(),
                         e.getPath(),
                         e.getContentType(),
                         e.getReceivedAt()

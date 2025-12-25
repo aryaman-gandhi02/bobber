@@ -5,6 +5,7 @@ import com.bobber.replay.http.model.HttpResult;
 import com.bobber.replay.http.ReplayHeaderBuilder;
 import com.bobber.replay.http.ReplayUrlBuilder;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -25,7 +26,7 @@ public class HttpDeliveryClient {
                 : job.getEvent().getBody();
 
         return webClient
-                .method(job.getEvent().getMethod())
+                .method(HttpMethod.valueOf(job.getEvent().getMethod()))
                 .uri(ReplayUrlBuilder.build(job))
                 .headers(h -> ReplayHeaderBuilder.build(job, h))
                 .bodyValue(body != null ? body : new byte[0])

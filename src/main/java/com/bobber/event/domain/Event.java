@@ -36,7 +36,7 @@ public class Event {
     private Hook hook;
 
     @Column(name = "method", nullable = false)
-    private HttpMethod method;
+    private String method;
 
     @Column(name = "path", nullable = false)
     private String path;
