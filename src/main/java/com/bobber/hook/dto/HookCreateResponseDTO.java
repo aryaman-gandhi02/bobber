@@ -8,5 +8,6 @@ public record HookCreateResponseDTO(
         String secret,
         Instant createdAt,
         Instant expiresAt
-) {}
+) {
+}
 

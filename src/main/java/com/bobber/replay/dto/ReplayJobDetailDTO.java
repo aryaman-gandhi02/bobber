@@ -23,4 +23,5 @@ public record ReplayJobDetailDTO(
         String contentTypeOverride,
 
         boolean forwardAuthorization
-) {}
+) {
+}

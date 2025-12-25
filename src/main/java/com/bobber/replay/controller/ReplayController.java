@@ -1,6 +1,5 @@
 package com.bobber.replay.controller;
 
-import com.bobber.replay.application.DeliveryAttemptService;
 import com.bobber.replay.application.ReplayJobService;
 import com.bobber.replay.dto.DeliveryAttemptDTO;
 import com.bobber.replay.dto.ReplayJobDetailDTO;
@@ -45,8 +44,8 @@ public class ReplayController {
 
     @GetMapping("/replays/{replayJobId}")
     public ReplayJobDetailDTO getReplay(
-        @PathVariable UUID replayJobId,
-        @AuthenticationPrincipal String secret
+            @PathVariable UUID replayJobId,
+            @AuthenticationPrincipal String secret
     ) {
         return replayJobService.getReplay(replayJobId, secret);
     }

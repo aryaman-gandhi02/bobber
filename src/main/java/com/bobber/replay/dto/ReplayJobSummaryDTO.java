@@ -10,5 +10,5 @@ public record ReplayJobSummaryDTO(
         ReplayJobStatus status,
         Instant createdAt,
         int attemptCount
-) {}
-
+) {
+}

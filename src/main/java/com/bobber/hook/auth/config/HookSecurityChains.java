@@ -7,12 +7,13 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static com.bobber.event.api.EventEndpoints.INGEST_WILDCARD;
-import static com.bobber.hook.api.HookEndpoints.*;
+import static com.bobber.hook.api.HookEndpoints.API_WILDCARD;
+import static com.bobber.hook.api.HookEndpoints.HOOK_CREATE_API;
 
 public final class HookSecurityChains {
 
-    private HookSecurityChains() {}
+    private HookSecurityChains() {
+    }
 
     public static SecurityFilterChain hookCreateChain(HttpSecurity http)
             throws Exception {

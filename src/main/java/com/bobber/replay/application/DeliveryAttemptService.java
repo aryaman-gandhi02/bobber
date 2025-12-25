@@ -22,12 +22,12 @@ public class DeliveryAttemptService {
     public Page<DeliveryAttemptDTO> listAttempts(UUID replayJobId, Pageable pageable) {
         return deliveryAttemptRepository.findByReplayJobIdOrderByAttemptNumberAsc(replayJobId, pageable)
                 .map(attempt -> new DeliveryAttemptDTO(
-                   attempt.getAttemptNumber(),
-                   attempt.getStatus(),
-                   attempt.getHttpStatus(),
-                   attempt.getDurationMs(),
-                   attempt.getError(),
-                   attempt.getAttemptedAt()
+                        attempt.getAttemptNumber(),
+                        attempt.getStatus(),
+                        attempt.getHttpStatus(),
+                        attempt.getDurationMs(),
+                        attempt.getError(),
+                        attempt.getAttemptedAt()
                 ));
     }
 }

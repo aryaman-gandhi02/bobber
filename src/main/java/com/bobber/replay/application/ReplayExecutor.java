@@ -3,7 +3,7 @@ package com.bobber.replay.application;
 import com.bobber.replay.domain.DeliveryAttempt;
 import com.bobber.replay.domain.ReplayJob;
 import com.bobber.replay.http.client.HttpDeliveryClient;
-import com.bobber.replay.http.model.HttpResult;
+import com.bobber.http.model.HttpResult;
 import com.bobber.replay.policy.RetryPolicy;
 import com.bobber.replay.repository.DeliveryAttemptRepository;
 import com.bobber.replay.repository.ReplayJobRepository;

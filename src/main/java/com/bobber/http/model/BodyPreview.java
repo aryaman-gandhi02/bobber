@@ -1,4 +1,4 @@
-package com.bobber.http.preview;
+package com.bobber.http.model;
 
 import com.bobber.event.policy.ContentTypePolicy;
 import tools.jackson.databind.ObjectMapper;
@@ -41,7 +41,8 @@ public record BodyPreview(String preview, boolean binary) {
                     return BodyPreview.binary(Base64.getEncoder().encodeToString(body));
                 }
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         return BodyPreview.empty();
     }

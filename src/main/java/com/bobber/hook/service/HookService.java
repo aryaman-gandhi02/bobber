@@ -1,7 +1,7 @@
 package com.bobber.hook.service;
 
-import com.bobber.hook.dto.HookCreateResponseDTO;
 import com.bobber.hook.domain.Hook;
+import com.bobber.hook.dto.HookCreateResponseDTO;
 import com.bobber.hook.policy.HookSecretGeneratorPolicy;
 import com.bobber.hook.repository.HookRepository;
 import lombok.RequiredArgsConstructor;

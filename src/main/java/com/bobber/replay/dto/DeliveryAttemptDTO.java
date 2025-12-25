@@ -11,4 +11,5 @@ public record DeliveryAttemptDTO(
         Long durationMs,
         String error,
         Instant attemptedAt
-) {}
+) {
+}

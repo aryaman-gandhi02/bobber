@@ -10,7 +10,8 @@ import java.util.Map;
 
 public final class ReplayUrlBuilder {
 
-    private ReplayUrlBuilder() {}
+    private ReplayUrlBuilder() {
+    }
 
     public static URI build(ReplayJob job) {
         Event event = job.getEvent();

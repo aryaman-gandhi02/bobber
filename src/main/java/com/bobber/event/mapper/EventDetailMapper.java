@@ -2,7 +2,7 @@ package com.bobber.event.mapper;
 
 import com.bobber.event.domain.Event;
 import com.bobber.event.dto.EventDetailDTO;
-import com.bobber.http.preview.BodyPreview;
+import com.bobber.http.model.BodyPreview;
 import com.bobber.http.util.HeaderUtil;
 
 public final class EventDetailMapper {

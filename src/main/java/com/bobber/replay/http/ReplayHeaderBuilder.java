@@ -10,7 +10,8 @@ import java.util.Map;
 
 public final class ReplayHeaderBuilder {
 
-    private ReplayHeaderBuilder() {}
+    private ReplayHeaderBuilder() {
+    }
 
     public static void build(ReplayJob job, HttpHeaders target) {
         Event event = job.getEvent();

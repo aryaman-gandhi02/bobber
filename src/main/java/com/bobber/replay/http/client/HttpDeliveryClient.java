@@ -1,9 +1,9 @@
 package com.bobber.replay.http.client;
 
 import com.bobber.replay.domain.ReplayJob;
-import com.bobber.replay.http.model.HttpResult;
 import com.bobber.replay.http.ReplayHeaderBuilder;
 import com.bobber.replay.http.ReplayUrlBuilder;
+import com.bobber.http.model.HttpResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;

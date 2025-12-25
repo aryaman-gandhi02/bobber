@@ -1,12 +1,10 @@
 package com.bobber.replay.mapper;
 
-import com.bobber.http.preview.BodyPreview;
+import com.bobber.http.model.BodyPreview;
 import com.bobber.http.util.HeaderUtil;
 import com.bobber.replay.domain.ReplayJob;
 import com.bobber.replay.dto.ReplayJobDetailDTO;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 public final class ReplayJobDetailMapper {
     private ReplayJobDetailMapper() {
     }

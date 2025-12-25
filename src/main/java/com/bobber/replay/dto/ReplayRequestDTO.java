@@ -10,4 +10,5 @@ public record ReplayRequestDTO(
         Map<String, List<String>> queryParamOverrides,
         String bodyOverrideBase64,
         String contentTypeOverride
-) {}
+) {
+}

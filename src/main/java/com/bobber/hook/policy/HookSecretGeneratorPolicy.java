@@ -10,7 +10,8 @@ public final class HookSecretGeneratorPolicy {
 
     private static final SecureRandom RANDOM = new SecureRandom();
 
-    private HookSecretGeneratorPolicy() {}
+    private HookSecretGeneratorPolicy() {
+    }
 
     public static String generate() {
         byte[] bytes = new byte[SECRET_BYTES];
