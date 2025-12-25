@@ -4,6 +4,7 @@ import com.bobber.event.domain.Event;
 import com.bobber.event.service.EventService;
 import com.bobber.replay.domain.ReplayJob;
 import com.bobber.replay.domain.ReplayJobStatus;
+import com.bobber.replay.dto.DeliveryAttemptDTO;
 import com.bobber.replay.dto.ReplayJobDetailDTO;
 import com.bobber.replay.dto.ReplayJobSummaryDTO;
 import com.bobber.replay.dto.ReplayRequestDTO;
@@ -76,6 +77,13 @@ public class ReplayJobService {
         eventService.requireEvent(replayJob.getEvent().getId(), secret);
 
         return ReplayJobDetailMapper.from(replayJob);
+    }
+
+    public Page<DeliveryAttemptDTO> listAttempts(UUID replayJobId, String secret, Pageable pageable) {
+        ReplayJob replayJob = replayJobRepository.findByIdWithEvent(replayJobId).orElseThrow();
+        eventService.requireEvent(replayJob.getEvent().getId(), secret);
+
+        return deliveryAttemptService.listAttempts(replayJobId, pageable);
     }
 }
 
