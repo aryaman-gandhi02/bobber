@@ -64,6 +64,10 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-webservices-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-websocket-test'
     testImplementation 'org.springframework.integration:spring-integration-test'
+    testImplementation 'com.squareup.okhttp3:mockwebserver'
+    testImplementation 'org.awaitility:awaitility'
+    testImplementation 'com.jayway.jsonpath:json-path'
+
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
