@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
+import static com.bobber.hook.api.HookEndpoints.API_BASE;
+
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping(API_BASE)
 public class EventController {
 
     private final EventService eventService;
@@ -31,7 +33,7 @@ public class EventController {
         return eventService.listEvents(hookId, secret, pageable);
     }
 
-    @GetMapping("events/{eventId}")
+    @GetMapping("/events/{eventId}")
     public EventDetailDTO getEvent(
             @PathVariable UUID eventId,
             @AuthenticationPrincipal String secret

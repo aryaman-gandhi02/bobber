@@ -9,14 +9,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 import java.util.UUID;
 
+import static com.bobber.hook.api.HookEndpoints.API_BASE;
+
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/events")
+@RequestMapping(API_BASE)
 public class ReplayController {
 
     private final ReplayJobService replayJobService;
 
-    @PostMapping("/{eventId}/replay")
+    @PostMapping("/events/{eventId}/replay")
     public Map<String, UUID> createReplayJob(
             @PathVariable UUID eventId,
             @AuthenticationPrincipal String hookSecret,

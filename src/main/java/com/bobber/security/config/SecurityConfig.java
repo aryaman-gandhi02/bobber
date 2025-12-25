@@ -1,5 +1,6 @@
 package com.bobber.security.config;
 
+import com.bobber.event.auth.config.EventSecurityChains;
 import com.bobber.hook.auth.config.HookSecurityChains;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +17,7 @@ public class SecurityConfig {
     @Bean
     @Order(1)
     SecurityFilterChain ingestChain(HttpSecurity http) throws Exception {
-        return HookSecurityChains.ingestChain(http);
+        return EventSecurityChains.ingestChain(http);
     }
 
     @Bean
