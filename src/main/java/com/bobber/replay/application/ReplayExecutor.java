@@ -32,7 +32,7 @@ public class ReplayExecutor {
     }
 
     void runJob(UUID jobId) {
-        ReplayJob job = replayJobRepository.findById(jobId).orElseThrow();
+        ReplayJob job = replayJobRepository.findByIdWithEvent(jobId).orElseThrow();
 
         if (!job.isQueued()) {
             log.warn("ReplayJob {} is not QUEUED, skipping execution", jobId);
